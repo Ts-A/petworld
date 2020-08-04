@@ -1,0 +1,55 @@
+.section{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 650px;
+}
+
+.section1{
+    background-image: url("https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+    min-height: 750px;
+}
+
+.section2{
+    background-image: url("https://images.unsplash.com/photo-1415369629372-26f2fe60c467?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+}
+
+.section3{
+    background-image: url("https://images.unsplash.com/photo-1517331156700-3c241d2b4d83?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+}
+
+.section4{
+   background-image: url("https://images.unsplash.com/photo-1519150268069-c094cfc0b3c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"); 
+}
+
+section.segment{
+    top:600px;
+}
+
+.commerce .column{
+    border : 2px solid #234532;
+}
+
+.sell .fields {
+    border:2px solid black
+}
+
+.ui.inline.tiny.image{
+    border: 1px solid black;
+}
+
+.swipe{
+    position: absolute;
+    top:50vh;
+}
+
+.welcome{
+    margin : 0 auto;
+}
+
+@media all and (max-width:780px){
+    .ui .details{
+        min-height:50vh;
+    }
+}

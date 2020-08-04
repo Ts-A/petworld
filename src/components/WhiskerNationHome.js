@@ -28,7 +28,7 @@ const Home = ()=>{
                 </tr>
                 <tr>
                 <td>3</td>
-                <td><Link to='/'></Link>PetTrade</td>
+                <td><Link to='/petTradeHome'>PetTrade</Link></td>
                 <td>Nope</td>
                 <td>Primary.E-commerce website that allows users to trade,donate and sell pets</td>
                 </tr>

@@ -1,3 +1,7 @@
 .dashboard img{
     margin: 0 auto;
 }
+
+.dashboard > *{
+    border : 2px solid black;
+}
