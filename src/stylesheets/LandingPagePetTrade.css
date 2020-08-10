@@ -1,4 +1,4 @@
-.section{
+.ui.section{
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -6,7 +6,7 @@
     min-height: 650px;
 }
 
-.section1{
+.ui.section.section1{
     background-image: url("https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
     min-height: 750px;
 }
@@ -27,11 +27,7 @@ section.segment{
     top:600px;
 }
 
-.commerce .column{
-    border : 2px solid #234532;
-}
-
-.sell .fields {
+.sell .fields{
     border:2px solid black
 }
 
@@ -44,8 +40,95 @@ section.segment{
     top:50vh;
 }
 
+.pet.home.page *{
+    margin: 0;
+}
+
+.petsellform{
+    min-height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://images.unsplash.com/photo-1537151549153-0eed850efd58?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1200&q=60");
+}
+
+.pet.sell.page{
+    background-image: url('https://images.unsplash.com/photo-1531138339586-1d454e33e2d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60');
+}
+
+.pet.trading.page{
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("https://images.unsplash.com/photo-1594878462420-86d243932298?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+}
+
 .welcome{
     margin : 0 auto;
+}
+
+.pet.sell.page,.pet.trading.page,.pet.transaction.page{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.pet.transaction.page{
+    background-position: center;
+    background-image: url("https://images.unsplash.com/photo-1581039876822-f6405325bcc5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60");
+}
+
+.pet.sell.content,.pet.trading.content,.pet.transaction.content{
+    flex: 1;
+}
+
+.comment-box{
+    resize: none;
+}
+
+.ui.center.aligned.grid{
+    padding : 8px;
+}
+
+.ui.center.aligned.grid .row{
+    margin  : 0;
+    padding : 1px;
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+.ui.footer.segment{
+    background: #3E5151;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.ui.inverted.orange.button:hover{
+    cursor: help;
+}
+
+.ui.medium.list .item a,.ui.medium.list .item {
+    color: whitesmoke;
+}
+
+.facebook,.instagram,.twitter:hover{
+    cursor: pointer;
+}
+
+.petsellform label{
+    font-size : 1.8em !important;
+    color     : #222222 !important;
+}
+
+.petsellform input,.petsellform textarea,.petsellform select{
+    background-color: #FFA057 !important ;
+    color: black !important;
+}
+
+.petsellform ::placeholder{
+    color: black !important;
 }
 
 @media all and (max-width:780px){

@@ -9,12 +9,12 @@ const SignUp = ()=>{
             H                        = useHistory(),
             [firstname,setFirstname] = useState(undefined),
             [lastname,setLastname]   = useState(undefined),
-            [username,setUsername]   = useState(`user__${Date.now()}`),
             [password,setPassword]   = useState(undefined),
             [email,setEmail]         = useState(undefined),
             [terms,setTerms]         = useState(false),
             [surveys,setSurveys]      = useState(false),
             [updates,setUpdates]     = useState(false)
+    let     [username,setUsername]   = useState(`user__${Date.now()}`)
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(!username)

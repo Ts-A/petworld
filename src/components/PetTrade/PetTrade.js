@@ -11,10 +11,10 @@ const PetTrade = ()=>{
     const {user} = useContext(userContext)
     return(
         <div>
-            <Route exact path='/petTradeHome' component={Home} />
+            <Route exact path='/' component={Home} />
             <Route exact path='/tradingPlatform' component={Trade} />
             <Route exact path='/petInfo/:pet_id' component={PetInfo} />
-            <Route exact path='/transaction'>
+            <Route exact path='/transaction/:pet_id'>
                 {user ? <Transaction/>  : <Redirect to='/userLogin'/>}
             </Route>
             <Route exact path='/petSell'>

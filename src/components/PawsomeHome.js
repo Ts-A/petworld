@@ -63,7 +63,7 @@ const Home = ()=>{
                 <th colSpan='2'></th>
             </tr></tfoot>
             </table>
-        </div>
+       </div>
     )
 }
 

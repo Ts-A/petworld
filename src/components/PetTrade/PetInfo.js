@@ -1,53 +1,163 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import TNavbar from './PetTradeNavbar'
-import { useParams } from 'react-router-dom'
+import { useParams , Link  } from 'react-router-dom'
 import Axios from 'axios'
 import Footer from './Footer'
+import moment from 'moment'
+import '../../stylesheets/LandingPagePetTrade.css'
+import $ from 'jquery'
+import { userContext } from '../../contexts/userContext'
+import logo from './LOGO ICO.ico'
 
 const PetInfo = ()=>{
-    const {pet_id}     = useParams(),
-          [pet,setPet] = useState(undefined),
-          [src,setSrc] = useState(undefined)
-    console.log(pet_id)
+    const {pet_id}             = useParams(),
+          {user}               = useContext(userContext),
+          [pet,setPet]         = useState(undefined),
+          [comment,setComment] = useState('Nudged'),
+          handleSubmit = (e)=>{
+            e.preventDefault()
+            Axios.put(`/pet/${pet_id}/comment`,{
+                comment
+            },{
+                headers : {
+                    'Authorization' : 'Bearer ' + localStorage.getItem('token')
+                }
+            }).then(res=>setPet(res.data.pet)).catch(e=>console.log(e.response.data.error))
+            $('.comment-box').val('')
+            setComment('')
+        }
+
     useEffect(()=>{
         Axios.get('/pet/' + pet_id)
         .then(data=>setPet(data.data.pet))
-        .then(()=>setSrc("https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"))
         .catch(e=>console.log(e.response.data.error))
-    },[pet_id])
+    },[pet_id,comment])
+    
     const petInfo = pet ? (
         <div className="ui stackable commerce grid">
-            <div className="ui center aligned two wide column">
-                <img onClick={e=>setSrc(e.target.src)} className="ui inline centered tiny image" alt="mini1" src="https://images.unsplash.com/photo-1453227588063-bb302b62f50b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
-                <img onClick={e=>setSrc(e.target.src)} className="ui inline centered tiny image" alt="mini1" src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80"/>
-                <img onClick={e=>setSrc(e.target.src)} className="ui inline centered tiny image" alt="mini1" src="https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
-                <img onClick={e=>setSrc(e.target.src)} className="ui inline centered tiny image" alt="mini1" src="https://images.unsplash.com/photo-1520087619250-584c0cbd35e8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
-                <img onClick={e=>setSrc(e.target.src)} className="ui inline centered tiny image" alt="mini1" src="https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
+            <div className="ui seven wide column">
+                <img alt="pet-image" className="ui fluid image" src={`/pet/${pet._id}/image`} />
             </div>
             <div className="ui seven wide column">
-                <img alt="pet" className="ui fluid image" src={src}/>
-            </div>
-            <div className="ui seven wide column">
-                Details{pet.name}
-                <a href="/transaction" className="positive ui button bottom attached">GO for it</a>
+                <div className="ui item">
+                    <div className="content">
+                        <div className="ui center aligned header">{pet.name}</div>
+                        <span className="time ui tiny teal right floated button">
+                            Added {moment(pet.createdAt).fromNow()}
+                        </span>
+                        <span className="ui labeled button">
+                                <Link onClick={()=>{                                    
+                                    if(pet){
+                                        Axios.post(`/pet/${pet.owner._id}`,{
+                                        message : `Mr.${user.lastname} is interested in buying ${pet.name}. For negotiations send ${user.email} location and confirmation mail` 
+                                        }).then(()=>console.log('message sent'))
+                                        .catch(e=>console.log(e.response.data.error))
+                                    }
+                                }} to={`/transaction/${pet_id}`} className="ui purchase basic green button">
+                                    <i className="shopping cart icon"></i>Purchase
+                                </Link>
+                                <Link onClick={()=>{                                    
+                                    if(pet){
+                                        Axios.post(`/pet/${pet.owner._id}`,{
+                                        message : `Mr.${user.lastname} is interested in buying ${pet.name}. For negotiations send ${user.email} location and confirmation mail` 
+                                        }).then(()=>console.log('message sent'))
+                                        .catch(e=>console.log(e.response.data.error))
+                                    }
+                                }} to={`/transaction/${pet_id}`} className="ui green left pointing label">
+                                    <i className="rupee icon"></i>{pet.price}
+                                </Link>
+                        </span>
+                        <div className="description">
+                            <div>Owned By <Link to='#'>{pet.owner.firstname} {pet.owner.lastname}</Link></div>
+                            <blockquote>
+                                <cite>Owner:</cite>
+                                <q>{pet.description}</q>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     ) : (
-        <div className="ui active inverted dimmer">
-            <div className="ui text loader"></div>
-        </div>
+        <>
+            <div className="ui fluid placeholder">
+            <div className="image header">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            <div className="paragraph">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            </div>
+            <div className='ui centered big header'><i className="stopwatch icon"></i>Loading</div>
+        </>    
     )
-    return(
-        <div>
-            <TNavbar/>
-            <div className="ui container segment">
-                {petInfo}
-            </div>
-            <div className="ui container stackable grid">
-                    <div className="ui segment ten column">
-                        Comments <button className='ui yellow button'>Add a comment</button>
+
+
+    const comments = pet ? pet.comments.map(comment => 
+        <div className="comment" key={comment._id}>
+                <span className="avatar">
+                    <img alt='im' src={logo} />
+                </span>
+                <div className="content">
+                    <span className="author">{comment.user.username}</span>
+                    <div className="metadata">
+                        <span className="date">{moment(comment.date).fromNow()}</span>
                     </div>
+                    <div className="text">
+                        {comment.comment}
+                    </div>
+                </div>    
             </div>
+        ) : 
+        (
+        <>
+            <div className="ui fluid placeholder">
+            <div className="image header">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            <div className="paragraph">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            </div>
+            <div className='ui centered big header'><i className="stopwatch icon"></i>Loading</div>
+        </>    
+        )
+    return(
+        <div className='pet sell page'>
+            <TNavbar/>
+            <div className='pet sell content'>
+                <div className="ui container segment">
+                    {petInfo}
+                </div>
+                <div className="ui grid">
+                    <div className="ui centered twelve wide column segment" style={{margin:"0 auto"}}>
+                        <div className="ui comments">
+                            <h3 className="ui dividing header">Comments</h3>
+                            {comments}
+                        </div>
+                        <form onSubmit={(e)=>handleSubmit(e)} className="ui reply form">
+                            <div className="field">
+                                <input className='comment-box' placeholder='Add a comment' onChange={(e)=>setComment(e.target.value)} ></input>
+                            </div>
+                            <button className="ui blue labeled submit icon button"><i className="icon edit"></i>Add Reply</button>
+                        </form>    
+                    </div>
+                </div>
+            </div>   
             <Footer/>
         </div>     
     )

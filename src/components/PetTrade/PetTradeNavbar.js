@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {userContext} from '../../contexts/userContext'
 import {logout} from '../User/Logout'
 import '../../stylesheets/LandingPagePetTrade.css'
+import logo from './LOGO ICO.ico'
 
 const TNavbar = ()=>{
     const {user,dispatch} = useContext(userContext)
@@ -27,12 +28,10 @@ const TNavbar = ()=>{
     ) 
 
     return(
-    <div className="ui navbar segment">
+    <div className="ui tertiary navbar segment" style={{backgroundColor:'#EFEAEA'}}>
         <nav className="ui stackable large secondary menu">
-            <Link to='/' className="item">Icon</Link>
-            <Link to='/petTradeHome' className="item">THome</Link>
+            <Link to='/' className="ui logo item"><img src={logo} alt='logo' /></Link>
             <Link to='/tradingPlatform' className='item'>Trade</Link>
-            <Link to='/transaction' className='item'>Transactions</Link>
             {userNav}
         </nav>
     </div>

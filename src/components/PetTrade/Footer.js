@@ -1,27 +1,34 @@
 import React from 'react'
+import '../../stylesheets/LandingPagePetTrade.css'
+import {Link} from 'react-router-dom'
 
 const Footer = () => {
     return (
-        <div className='footer'>    
-            <div className="ui inverted segment">
-                <div className="ui container three column stackable grid">
+            <div className="ui footer segment">
+                <div className="ui container one column stackable grid">
                     <div className='row'>
                         <div className='column center aligned'>
-                            <div className='list'>
+                            <div className='ui medium list'>
                                 <div className='item'>
-                                    one
+                                    <Link to='#'>About Us</Link>
                                 </div>
                                 <div className='item'>
-                                    one
+                                    <Link to='#'>About this project</Link>
+                                </div>
+                                <div className='item'>
+                                    <Link to='#'>Want to make projects for your wesbite</Link>
+                                </div>
+                                <div className='item'>
+                                    Check us out on 
+                                    <span> <i className='large twitter icon'></i></span>
+                                    <span> <i className='large facebook icon'></i></span>
+                                    <span> <i className='large instagram icon'></i></span>
                                 </div>
                             </div>
                         </div>
-                        <div className='column center aligned'>List2</div>
-                        <div className='column center aligned'>List3</div>
                     </div>
                 </div>        
             </div> 
-        </div>
     )
 }
 

@@ -4,6 +4,7 @@ import '../../stylesheets/Dashboard.css'
 import {userContext} from '../../contexts/userContext'
 import {logout} from './Logout'
 import moment from 'moment'
+import logo from './LOGO ICO.ico'
 
 const Dashboard = ()=>{   
     const {user,dispatch} = useContext(userContext),
@@ -26,7 +27,7 @@ const Dashboard = ()=>{
     <div className='ui container centered dashboard stackable grid'>
         <div className="ui eight wide column fluid link card">
             <div className=" image">
-                <img src="https://images.unsplash.com/photo-1526848707818-825332fe55f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="user"/>
+                <img src={logo} alt="user"/>
             </div>
             <div className="content">
                 <div className="ui huge header">{user.username}</div>
@@ -37,24 +38,36 @@ const Dashboard = ()=>{
             </div>
             <div className="extra content">
                 <span className="right floated">
-            { `Joined ${moment(user.createdAt).fromNow()}` }
-                </span>
-                <span>
-                    <i className="user icon"></i>
-                    {user.friends.length} Friends
+                   { `Joined ${moment(user.createdAt).fromNow()}` }
                 </span>
             </div>
         </div>
     </div>)
     : (
-    <>
-        404 Not found
-    </>)
+        <>
+            <div className="ui fluid placeholder">
+            <div className="image header">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            <div className="paragraph">
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+            </div>
+            </div>
+            <div className='ui centered big header'><i className="stopwatch icon"></i>No pets available currently try changing your query</div>
+        </>    
+)
     return(
-        <div>
-            <div className="ui navbar segment">
+        <div className='user home page'>
+            <div className="ui home navbar segment">
                 <nav className="ui stackable large secondary menu">
-                    <Link to='/' className="item">Home of</Link>
+                    <Link to='/' className="item">Home</Link>
                     { user ? (
                         <>
                             <div className="right aligned item">Signed in as {user.username}</div>

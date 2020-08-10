@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter, Route} from 'react-router-dom'
-import Home from '../src/components/WhiskerNationHome'
 import Dashboard from './components/User/UserProfile'
 import PetTrade from './components/PetTrade/PetTrade'
 import SignUp from '../src/components/User/SignUp'
@@ -12,7 +11,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <UserContextProvider>
-          <Route exact path='/' component={Home}/>
           <Route exact path='/userDashboard' component={Dashboard}/>
           <Route exact path='/userSignUp' component={SignUp}/>
           <Route exact path='/userLogin' component={Login}/>
